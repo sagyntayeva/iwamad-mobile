@@ -3,6 +3,7 @@
     "name": "iwamad-mobile",
     "slug": "iwamad-mobile",
     "version": "1.0.0",
+    "scheme": "iwamad-mobile",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -19,10 +20,12 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "output": "single"
     },
     "plugins": [
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-router"
     ],
     "experiments": {
       "baseUrl": "/iwamad-mobile"
