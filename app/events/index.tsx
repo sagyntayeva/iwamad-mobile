@@ -17,38 +17,46 @@ export default function EventsScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.hint}>Long-press an event to save it. Saved: {savedIds.length}</Text>
-      <TextInput
-        value={query}
-        onChangeText={setQuery}
-        placeholder="Search events"
-        style={styles.search}
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      <FlatList
-        data={visibleEvents}
-        keyExtractor={(e) => String(e.id)}
-        renderItem={({ item }) => (
-          <EventRow
-            event={item}
-            saved={savedIds.includes(item.id)}
-            onPress={() => router.push(`/events/${item.id}`)}
-            onLongPress={() => toggleSaved(item.id)}
+    <FlatList
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      contentInsetAdjustmentBehavior="automatic"
+      keyboardShouldPersistTaps="handled"
+      data={visibleEvents}
+      keyExtractor={(e) => String(e.id)}
+      ListHeaderComponent={
+        <View>
+          <Text style={styles.hint}>Long-press an event to save it. Saved: {savedIds.length}</Text>
+          <TextInput
+            value={query}
+            onChangeText={setQuery}
+            placeholder="Search events"
+            style={styles.search}
+            autoCapitalize="none"
+            autoCorrect={false}
           />
-        )}
-        ListEmptyComponent={<Text style={styles.empty}>No events match</Text>}
-      />
-    </View>
+        </View>
+      }
+      renderItem={({ item }) => (
+        <EventRow
+          event={item}
+          saved={savedIds.includes(item.id)}
+          onPress={() => router.push(`/events/${item.id}`)}
+          onLongPress={() => toggleSaved(item.id)}
+        />
+      )}
+      ListEmptyComponent={<Text style={styles.empty}>No events match</Text>}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
     backgroundColor: '#f9fafb',
+  },
+  content: {
+    padding: 16,
   },
   hint: {
     fontSize: 14,
