@@ -1,5 +1,6 @@
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
+import HolidayNote from '../../src/components/HolidayNote';
 import { useEvents } from '../../src/hooks/useEvents';
 
 export default function EventScreen() {
@@ -49,6 +50,7 @@ export default function EventScreen() {
       <Stack.Screen options={{ title: event.title }} />
       <Text style={styles.title}>{event.title}</Text>
       <Text style={styles.text}>Date: {event.date}</Text>
+      <HolidayNote date={event.date} />
       <Text style={styles.text}>Place: {event.place}</Text>
       <Text style={styles.text}>Seats: {event.seats}</Text>
     </View>
